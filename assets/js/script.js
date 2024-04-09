@@ -26,6 +26,7 @@ searchBtn.addEventListener('click', function(){
                     //loop for weather icon on cards
                     for (let i = 0; i < 5; i++) {
                         document.getElementById("card-weatherIcon" + (i+1)).src = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + '.png';
+                        
 
                     }
                     //loop for temp on cards
@@ -43,42 +44,11 @@ searchBtn.addEventListener('click', function(){
                         document.getElementById("card-humidity" + (i+1)).innerHTML = "Humidity: " + data.list[i].main.humidity
 
                     }
-                //         // Access each item in the array
-                //         // const item = data.list[i];
-                        
-                //         // // Access each item's dt_txt property to get the date
-                //         // const date = item.dt_txt;
-                        
-                //         // // Create a new <p> element to display the date
-                //         // const dateElement = document.createElement('p');
-                //         // dateElement.textContent = date;
-                        
-                //         // // Append the date element to the cardDate element or any other element as needed
-                //         // cardDate.appendChild(dateElement);
-                        
-                //         // // You can perform additional operations with other properties of 'item' here
-                //     }
+               
                 });
             });
             
-                //     for(i = 0; i<5; i++){
-                //         document.getElementById("card-date" + (i+1) + "Min").innerHTML = "Min: " + Number(data.list[i].main.temp_min - 273.15).toFixed(1)+ "°";
-                //         //Number(1.3450001).toFixed(2); // 1.35
-                //     }
                 
-                //     for(i = 0; i<5; i++){
-                //         document.getElementById("day" + (i+1) + "Max").innerHTML = "Max: " + Number(data.list[i].main.temp_max - 273.15).toFixed(2) + "°";
-                //     }
-                //     //------------------------------------------------------------
-                
-                //     //Getting Weather Icons
-                //      for(i = 0; i<5; i++){
-                //         document.getElementById("img" + (i+1)).src = "http://openweathermap.org/img/wn/"+
-                //         data.list[i].weather[0].icon
-                //         +".png";
-                //     }
-                //     //------------------------------------------------------------
-                //     console.log(data)
                 
                 
                 // })
@@ -125,7 +95,6 @@ searchBtn.addEventListener('click', function(){
 //     }
 
 
-// console.log(searchBtn, searchInput)
 
 
-// console.log('turkey')
+
