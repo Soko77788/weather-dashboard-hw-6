@@ -24,29 +24,22 @@ searchBtn.addEventListener("click", function () {
       for (let i = 0; i < 5; i++) {
         document.getElementById("card-date" + (i + 1)).innerHTML =
           "Date: " + data.list[i].dt_txt;
+          //loop for weather icon on cards
+          document.getElementById("card-weatherIcon" + (i + 1)).src =
+            "http://openweathermap.org/img/wn/" +
+            data.list[i].weather[0].icon +
+            ".png";
+            //loop for temp on cards
+            document.getElementById("card-temp" + (i + 1)).innerHTML =
+              "Temp: " + data.list[i].main.temp + "°";
+              //loop for wind speed on card
+              document.getElementById("card-wind" + (i + 1)).innerHTML =
+                "Wind: " + data.list[i].wind.speed + "MPH";
+                //loop for humidity on card
+                document.getElementById("card-humidity" + (i + 1)).innerHTML =
+                  "Humidity: " + data.list[i].main.humidity;
       }
-      //loop for weather icon on cards
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-weatherIcon" + (i + 1)).src =
-          "http://openweathermap.org/img/wn/" +
-          data.list[i].weather[0].icon +
-          ".png";
-      }
-      //loop for temp on cards
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-temp" + (i + 1)).innerHTML =
-          "Temp: " + data.list[i].main.temp + "°";
-      }
-      //loop for wind speed on card
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-wind" + (i + 1)).innerHTML =
-          "Wind: " + data.list[i].wind.speed + "MPH";
-      }
-      //loop for humidity on card
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-humidity" + (i + 1)).innerHTML =
-          "Humidity: " + data.list[i].main.humidity;
-      }
+  
 
       // store lat and lon for 2nd fetch
       const lat = data.city.coord.lat;
@@ -121,6 +114,7 @@ function renderSearchedCities() {
     searchedCitiesDiv.innerHTML = '';
     const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     searchedCities.forEach(city => {
+        
         const cityButton = document.createElement('button');
         cityButton.textContent = city;
         cityButton.classList.add('btn', 'btn-secondary', 'm-1');
@@ -169,29 +163,22 @@ function updateUi(data) {
     for (let i = 0; i < 5; i++) {
         document.getElementById("card-date" + (i + 1)).innerHTML =
           "Date: " + data.list[i].dt_txt;
+          //loop for weather icon on cards
+          document.getElementById("card-weatherIcon" + (i + 1)).src =
+            "http://openweathermap.org/img/wn/" +
+            data.list[i].weather[0].icon +
+            ".png";
+            //loop for temp on cards
+            document.getElementById("card-temp" + (i + 1)).innerHTML =
+              "Temp: " + data.list[i].main.temp + "°";
+              //loop for wind speed on card
+              document.getElementById("card-wind" + (i + 1)).innerHTML =
+                "Wind: " + data.list[i].wind.speed + "MPH";
+                //loop for humidity on card
+                document.getElementById("card-humidity" + (i + 1)).innerHTML =
+                  "Humidity: " + data.list[i].main.humidity;
       }
-      //loop for weather icon on cards
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-weatherIcon" + (i + 1)).src =
-          "http://openweathermap.org/img/wn/" +
-          data.list[i].weather[0].icon +
-          ".png";
-      }
-      //loop for temp on cards
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-temp" + (i + 1)).innerHTML =
-          "Temp: " + data.list[i].main.temp + "°";
-      }
-      //loop for wind speed on card
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-wind" + (i + 1)).innerHTML =
-          "Wind: " + data.list[i].wind.speed + "MPH";
-      }
-      //loop for humidity on card
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-humidity" + (i + 1)).innerHTML =
-          "Humidity: " + data.list[i].main.humidity;
-      }
+    
 }
 
 function updateUi2(currentData) {

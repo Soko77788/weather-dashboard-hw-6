@@ -1,8 +1,26 @@
 header { 
-    color: blue;
+    color: white;
+    background: linear-gradient(to right, rgb(51, 51, 234), darkblue);
 }
 
-.card {
-  
-  
+.card-text1 {
+    font-weight: bold;
+}
+
+#weather-box {
+    margin-top: -30px;
+}
+#cityDate {
+    font-size: 25px;
+    font-weight: bold;
+}
+.btn-secondary {
+    background-color: blue;
+    width: 100%;
+}
+
+.card-body1 {
+    background-color: darkblue;
+    color: white;
+     
 }
