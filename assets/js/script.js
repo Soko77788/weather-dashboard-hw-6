@@ -11,6 +11,7 @@ const weatherIconMain = document.getElementById("weatherIconMain");
 const mainTemp = document.getElementById("mainTemp");
 const mainWind = document.getElementById("mainWind");
 const mainHumidity = document.getElementById("mainHumidity");
+
 searchBtn.addEventListener("click", function () {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput.value}&appid=${APIkey}&units=imperial&`
@@ -21,22 +22,22 @@ searchBtn.addEventListener("click", function () {
     .then(function (data) {
       console.log(data);
       //loop for dates in the cards
-      for (let i = 0; i < 5; i++) {
-        document.getElementById("card-date" + (i + 1)).innerHTML =
+      for (let i = 0; i < data.list.length; i+=8) {
+        document.getElementById("card-date" + ((i / 8) + 1)).innerHTML =
           "Date: " + data.list[i].dt_txt;
           //loop for weather icon on cards
-          document.getElementById("card-weatherIcon" + (i + 1)).src =
+          document.getElementById("card-weatherIcon" + ((i / 8) + 1)).src =
             "http://openweathermap.org/img/wn/" +
             data.list[i].weather[0].icon +
             ".png";
             //loop for temp on cards
-            document.getElementById("card-temp" + (i + 1)).innerHTML =
+            document.getElementById("card-temp" + ((i / 8) + 1)).innerHTML =
               "Temp: " + data.list[i].main.temp + "°";
               //loop for wind speed on card
-              document.getElementById("card-wind" + (i + 1)).innerHTML =
+              document.getElementById("card-wind" + ((i / 8) + 1)).innerHTML =
                 "Wind: " + data.list[i].wind.speed + "MPH";
                 //loop for humidity on card
-                document.getElementById("card-humidity" + (i + 1)).innerHTML =
+                document.getElementById("card-humidity" + ((i / 8) + 1)).innerHTML =
                   "Humidity: " + data.list[i].main.humidity;
       }
   
@@ -160,22 +161,22 @@ function fetchWeatherData(city) {
 }
 
 function updateUi(data) {
-    for (let i = 0; i < 5; i++) {
-        document.getElementById("card-date" + (i + 1)).innerHTML =
+    for (let i = 0; i < data.list.length; i+=8) {
+        document.getElementById("card-date" + ((i / 8) + 1)).innerHTML =
           "Date: " + data.list[i].dt_txt;
           //loop for weather icon on cards
-          document.getElementById("card-weatherIcon" + (i + 1)).src =
+          document.getElementById("card-weatherIcon" + ((i / 8) + 1)).src =
             "http://openweathermap.org/img/wn/" +
             data.list[i].weather[0].icon +
             ".png";
             //loop for temp on cards
-            document.getElementById("card-temp" + (i + 1)).innerHTML =
+            document.getElementById("card-temp" + ((i / 8) + 1)).innerHTML =
               "Temp: " + data.list[i].main.temp + "°";
               //loop for wind speed on card
-              document.getElementById("card-wind" + (i + 1)).innerHTML =
+              document.getElementById("card-wind" + ((i / 8) + 1)).innerHTML =
                 "Wind: " + data.list[i].wind.speed + "MPH";
                 //loop for humidity on card
-                document.getElementById("card-humidity" + (i + 1)).innerHTML =
+                document.getElementById("card-humidity" + ((i / 8) + 1)).innerHTML =
                   "Humidity: " + data.list[i].main.humidity;
       }
     
