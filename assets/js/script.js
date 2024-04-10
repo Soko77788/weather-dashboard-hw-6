@@ -65,12 +65,12 @@ searchBtn.addEventListener("click", function () {
           
 document.getElementById(
             "cityDate"
-          ).innerHTML = `${data.city.name} (${currentDate.toDateString()})`;
+          ).innerHTML = `${currentData.name} (${currentDate.toDateString()})`;
           document.getElementById(
             "cityDate"
           ).innerHTML += `<img id="weatherIconMain" src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}.png">`;
         
-        mainTemp.innerHTML += "Temp: " + currentData.main.temp + '°'
+        mainTemp.innerHTML = "Temp: " + currentData.main.temp + '°'
         mainWind.innerHTML = "Wind: " + currentData.wind.speed + ' MPH'
         mainHumidity.innerHTML = "Humidity: " + currentData.main.humidity + "%"
           
@@ -95,3 +95,120 @@ document.getElementById(
 //         }
 
 //     }
+
+
+const searchedCitiesDiv = document.getElementById('searchedCity');
+
+// Listen for clicks on the search button
+searchBtn.addEventListener('click', function () {
+    const searchedCity = searchInput.value.trim();
+    if (searchedCity) {
+        // Store the searched city in local storage
+        let searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+        searchedCities.push(searchedCity);
+        localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+
+        // Render the searched cities from local storage
+        renderSearchedCities();
+
+        // Clear the search input
+        searchInput.value = '';
+    }
+});
+
+// Render the searched cities from local storage
+function renderSearchedCities() {
+    searchedCitiesDiv.innerHTML = '';
+    const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+    searchedCities.forEach(city => {
+        const cityButton = document.createElement('button');
+        cityButton.textContent = city;
+        cityButton.classList.add('btn', 'btn-secondary', 'm-1');
+        cityButton.addEventListener('click', function () {
+            // Retrieve weather data for the clicked city and display it
+            fetchWeatherData(city);
+        });
+        searchedCitiesDiv.appendChild(cityButton);
+    });
+}
+
+// Function to fetch weather data for a city
+function fetchWeatherData(city) {
+    fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIkey}&units=imperial&`
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+            updateUi(data)
+          console.log(data);
+
+          const lat = data.city.coord.lat;
+      const lon = data.city.coord.lon;
+
+    
+
+          fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}&units=imperial`
+          )
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (currentData) {
+                updateUi2(currentData)
+                console.log(currentData)
+            })
+        
+    // Fetch weather data for the specified city
+    // Display the weather data in the appropriate sections
+})
+}
+
+function updateUi(data) {
+    for (let i = 0; i < 5; i++) {
+        document.getElementById("card-date" + (i + 1)).innerHTML =
+          "Date: " + data.list[i].dt_txt;
+      }
+      //loop for weather icon on cards
+      for (let i = 0; i < 5; i++) {
+        document.getElementById("card-weatherIcon" + (i + 1)).src =
+          "http://openweathermap.org/img/wn/" +
+          data.list[i].weather[0].icon +
+          ".png";
+      }
+      //loop for temp on cards
+      for (let i = 0; i < 5; i++) {
+        document.getElementById("card-temp" + (i + 1)).innerHTML =
+          "Temp: " + data.list[i].main.temp + "°";
+      }
+      //loop for wind speed on card
+      for (let i = 0; i < 5; i++) {
+        document.getElementById("card-wind" + (i + 1)).innerHTML =
+          "Wind: " + data.list[i].wind.speed + "MPH";
+      }
+      //loop for humidity on card
+      for (let i = 0; i < 5; i++) {
+        document.getElementById("card-humidity" + (i + 1)).innerHTML =
+          "Humidity: " + data.list[i].main.humidity;
+      }
+}
+
+function updateUi2(currentData) {
+    const currentDate = new Date(currentData.dt * 1000); // Convert timestamp to milliseconds
+
+          
+document.getElementById(
+            "cityDate"
+          ).innerHTML = `${currentData.name} (${currentDate.toDateString()})`;
+          document.getElementById(
+            "cityDate"
+          ).innerHTML += `<img id="weatherIconMain" src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}.png">`;
+        
+        mainTemp.innerHTML = "Temp: " + currentData.main.temp + '°'
+        mainWind.innerHTML = "Wind: " + currentData.wind.speed + ' MPH'
+        mainHumidity.innerHTML = "Humidity: " + currentData.main.humidity + "%"
+}
+
+// Initial rendering of searched cities from local storage
+renderSearchedCities();
