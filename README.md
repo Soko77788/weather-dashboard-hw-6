@@ -18,7 +18,7 @@ https://openweathermap.org/forecast5
 1. To use the app simply go to the deployed app at the following link
 (https://soko77788.github.io/weather-dashboard-hw-6/)
 
-2. Well on the app you'll see a search bar. Type in a city and the app will fetch the data from a weather api and display it momentarily on screen. 
+2. While on the app you'll see a search bar. Type in a city and the app will fetch the data from a weather api and display it momentarily on screen. 
 
 3. If you right click -> Inspect -> Console you can get an idea of the information the API is logging to the console. Click
 
