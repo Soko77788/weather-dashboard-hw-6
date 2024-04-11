@@ -38,7 +38,7 @@ searchBtn.addEventListener("click", function () {
           "Wind: " + data.list[i].wind.speed + "MPH";
         //loop for humidity on card
         document.getElementById("card-humidity" + (i / 8 + 1)).innerHTML =
-          "Humidity: " + data.list[i].main.humidity;
+          "Humidity: " + data.list[i].main.humidity + "%";
       }
 
       // store lat and lon for 2nd fetch
@@ -164,7 +164,7 @@ function updateUi(data) {
       "Wind: " + data.list[i].wind.speed + "MPH";
     //loop for humidity on card
     document.getElementById("card-humidity" + (i / 8 + 1)).innerHTML =
-      "Humidity: " + data.list[i].main.humidity;
+      "Humidity: " + data.list[i].main.humidity + "%";
   }
 }
 
